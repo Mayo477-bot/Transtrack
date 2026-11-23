@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.core.validators import MinValueValidator
+from decimal import Decimal
 
 
 class Category(models.Model):
@@ -57,7 +58,7 @@ class Transaction(models.Model):
     amount = models.DecimalField(
         max_digits=15,
         decimal_places=2,
-        validators=[MinValueValidator(0.01)]
+        validators=[MinValueValidator(Decimal(0.01))]
     )
     currency = models.CharField(max_length=3, default="USD")
     description = models.CharField(max_length=255, blank=True)
